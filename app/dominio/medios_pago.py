@@ -2,37 +2,7 @@
 medios_pago.py
 ==============
 PATRÓN DE DISEÑO: FACTORY METHOD (Creacional)
-Basado en:
-    - Extra/patrones/patrones/factory/factory.py
-    - Extra/patrones/patrones/factory/main.py
-    - Filminas Semana 7 de DAO (Diapositivas 9-13: "Patrón Factory")
 
-¿Cómo enseña la cátedra el Patrón Factory?
--------------------------------------------
-Siguiendo las filminas de la clase (Diapositiva 9):
-"Problema que resuelve:
-    - Crear objetos de una superclase redefiniendo el tipo exacto a crear.
- Se utiliza en:
-    - Creación de objetos dependientes de tipos/plataformas.
-    - Pruebas y desacoplamiento.
- Solución:
-    - La 'Fábrica' hereda de una fábrica abstracta (Factory) que crea 'Productos'.
-    - Todos los productos heredan de un producto abstracto (Product) con la funcionalidad mínima.
-    - Los objetos no se crean con 'new' o constructor directo sino llamando a un método 'factory_method()' específico.
-    - Las Fábricas concretas (ConcreteFactory) crean y devuelven Productos concretos (ConcreteProduct).
- CONCEPTO CLAVE:
-    Encapsula la lógica de instanciación, independizando el código del cliente de las clases concretas que deben crearse."
-
-Estructura en nuestro Sistema de Ventas:
-    - Producto Abstracto: `MedioPago` (hereda de `Product(ABC)`).
-    - Productos Concretos: `PagoEfectivo`, `PagoTarjetaDebito`, `PagoTarjetaCredito`, `PagoTransferenciaQR`.
-    - Fábrica Abstracta: `FabricaMedioPago(ABC)` con `@abstractmethod def factory_method(self) -> MedioPago:`.
-    - Fábricas Concretas:
-        * `FabricaPagoEfectivo` -> `factory_method()` devuelve `PagoEfectivo`.
-        * `FabricaPagoTarjetaDebito` -> `factory_method()` devuelve `PagoTarjetaDebito`.
-        * `FabricaPagoTarjetaCredito` -> `factory_method()` devuelve `PagoTarjetaCredito`.
-        * `FabricaPagoTransferenciaQR` -> `factory_method()` devuelve `PagoTransferenciaQR`.
-    - Coordinador / Registro: `MedioPagoFactory` permite resolver la fábrica por tipo y crear el medio llamando a su `factory_method()`.
 """
 
 from abc import ABC, abstractmethod
